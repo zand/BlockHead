@@ -1,0 +1,3 @@
+name: BlockHead
+main: com.bukkit.zand.blockhead.BlockHead
+version: 0.0.1
