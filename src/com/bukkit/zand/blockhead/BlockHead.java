@@ -32,7 +32,7 @@ public class BlockHead extends JavaPlugin {
         versionInfo = desc.getName() + " version " + desc.getVersion() + " by zand";
         commands.add(desc.getName().toLowerCase());
         commands.add("hat");
-        setupCommands();
+        //setupCommands();
         
         // NOTE: Event registration should be done in onEnable not here as all events are unregistered when a plugin is disabled
     }
@@ -80,7 +80,7 @@ public class BlockHead extends JavaPlugin {
      	    String command = "";
      	    for (String c : commands) command += "|" + c;
      	    if (!command.isEmpty())
-     	    	General.l.save_command("/" + command.substring(1), "Puts the currently held item on your head");
+     	    	General.l.save_command("/" + command.substring(1) + " (help)", "Puts the currently held item on your head");
      	}
     }
 }
