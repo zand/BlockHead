@@ -80,7 +80,7 @@ public class BlockHead extends JavaPlugin {
      	    String command = "";
      	    for (String c : commands) command += "|" + c;
      	    if (!command.isEmpty())
-     	    	General.l.save_command("/" + command.substring(1) + " (help)", "Puts the currently held item on your head");
+     	    	General.l.save_command("/" + command.substring(1) + " (help)", "Puts the block in-hand on your head");
      	}
     }
 }
