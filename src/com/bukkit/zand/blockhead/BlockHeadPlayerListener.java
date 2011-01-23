@@ -108,7 +108,7 @@ public class BlockHeadPlayerListener extends PlayerListener {
 		
 		int id = item.getTypeId();
 		if (id < 1 || id > 255) {
-			player.sendMessage(ChatColor.RED + "You can put that item on your head");
+			player.sendMessage(ChatColor.RED + "You can't put that item on your head");
 			return false;
 		}
 		
