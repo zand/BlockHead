@@ -52,47 +52,57 @@ public class BlockHeadPlayerListener extends PlayerListener {
     			}
     			else if (args[1].startsWith("ver")) player.sendMessage(plugin.versionInfo);
     			else { // /hat [item id]
-    				if (player.isOp()) placeOnHead(player, new ItemStack(Integer.valueOf(args[1]), 1));
-    				else player.sendMessage(ChatColor.DARK_RED + "Your not allowed to use that command");
+    				try {
+    					if (plugin.checkPermission(player, "blockhead.hat.items")) placeOnHead(player, new ItemStack(Integer.valueOf(args[1]), 1));
+        				else player.sendMessage(ChatColor.DARK_RED + "Your not allowed to use that command");
+    				}
+    				catch (NumberFormatException e) {
+    					player.sendMessage(ChatColor.DARK_RED + args[1] + " is not a number.");
+    				}
     			}
     			
     		} else if (args.length > 2) {
-    			if (player.isOp()) {
-    				// Get the stack
-    				ItemStack stack = new ItemStack(Integer.valueOf(args[2]), 1);
-    				
-    				// Check the stack
-    				if (stack.getTypeId() > 255 || stack.getTypeId() < 1) {
-    					player.sendMessage(ChatColor.RED + "Not a valid block id");
-    					return;
-    				}
-    				
-    				// Look for Player
-    				List<Player> players = plugin.getServer().matchPlayer(args[1]);
-    				
-    				// Player not Found
-    				if (players.size() < 1) player.sendMessage(ChatColor.RED + "Could not find player");
-    				
-    				// More than 1 Player Found
-    				else if (players.size() > 1) {
-    					player.sendMessage(ChatColor.RED + "More than one player found");
-    					String msg = "";
-    					for (Player other : players) msg += " " + other.getName();
-    					player.sendMessage(msg.trim());
-    				}
-    				
-    				// Player Found
-    				else {
-    					Player other = players.get(0);
-    					placeOnHead(other, stack);
-    					player.sendMessage("Putting a block on " + other.getName() + "'s head.");
-    				}
+    			if (plugin.checkPermission(player, "blockhead.hat.give.items")) {
+	    				try {
+	    				// Get the stack
+	    				ItemStack stack = new ItemStack(Integer.valueOf(args[2]), 1);
+	    				
+	    				// Check the stack
+	    				if (stack.getTypeId() > 255 || stack.getTypeId() < 1) {
+	    					player.sendMessage(ChatColor.RED + "Not a valid block id");
+	    					return;
+	    				}
+	    				
+	    				// Look for Player
+	    				List<Player> players = plugin.getServer().matchPlayer(args[1]);
+	    				
+	    				// Player not Found
+	    				if (players.size() < 1) player.sendMessage(ChatColor.RED + "Could not find player");
+	    				
+	    				// More than 1 Player Found
+	    				else if (players.size() > 1) {
+	    					player.sendMessage(ChatColor.RED + "More than one player found");
+	    					String msg = "";
+	    					for (Player other : players) msg += " " + other.getName();
+	    					player.sendMessage(msg.trim());
+	    				}
+	    				
+	    				// Player Found
+	    				else {
+	    					Player other = players.get(0);
+	    					placeOnHead(other, stack);
+	    					player.sendMessage("Putting a block on " + other.getName() + "'s head.");
+	    				}
+	    			}
+	    			catch (NumberFormatException e) {
+	    				player.sendMessage(ChatColor.DARK_RED + args[2] + " is not a number.");
+	    			}
     			}
 				else player.sendMessage(ChatColor.DARK_RED + "Your not allowed to use that command");
     		
-    		}else { // hat [player] [item id]
+    		} else if (plugin.checkPermission(player, "blockhead.hat")) { // hat
 	    		placeOnHead(player, player.getItemInHand());
-    		}
+    		} else player.sendMessage(ChatColor.DARK_RED + "Your not allowed to use that command");
     		
     		event.setCancelled(true);
     	}
@@ -130,8 +140,6 @@ public class BlockHeadPlayerListener extends PlayerListener {
 					player.getWorld().dropItem(player.getLocation(), e.getValue());
 			}
 		}
-		 
-		
 		
 		player.sendMessage("Enjoy your new Headgear");
 		return true;
