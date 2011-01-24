@@ -106,9 +106,24 @@ public class BlockHead extends JavaPlugin {
     }
 	
 	@SuppressWarnings("static-access")
+	public List<Player> getGroupPlayers(String group) {
+		ArrayList<Player> ret = new ArrayList<Player>();
+		
+		if (this.Permissions != null)
+			for (Player player : getServer().getOnlinePlayers())
+				if (this.Permissions.Security
+						.getGroup(player.getName())
+						.toLowerCase()
+						.startsWith(group.toLowerCase()))
+					ret.add(player);
+		
+    	return ret;
+	}
+	
+	@SuppressWarnings("static-access")
 	boolean checkPermission(Player player, String nodes) {
     	if (this.Permissions == null)
-    		return nodes == "blockhead.hat" || player.isOp();
+    		return nodes == "blockhead.hat" || player.isOp() && !nodes.startsWith("blockhead.hat.give.groups.");
     	return this.Permissions.Security.permission(player, nodes);
     }
 }
