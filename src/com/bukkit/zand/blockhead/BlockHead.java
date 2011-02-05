@@ -14,7 +14,7 @@ import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 
-import com.nijikokun.bukkit.General.General;
+//import com.nijikokun.bukkit.General.General;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 /**
@@ -82,6 +82,7 @@ public class BlockHead extends JavaPlugin {
     
 	private void setupOtherPlugins() {
 		
+		/*
 		// General
      	Plugin test = this.getServer().getPluginManager().getPlugin("General");
      	if (test != null) {
@@ -92,9 +93,10 @@ public class BlockHead extends JavaPlugin {
      	    if (!command.isEmpty())
      	    	General.l.save_command("/" + command.substring(1) + " (help)", "Puts the block in-hand on your head");
      	}
+     	*/
      	
      	// Permissions
-    	test = this.getServer().getPluginManager().getPlugin("Permissions");
+    	Plugin test = this.getServer().getPluginManager().getPlugin("Permissions");
     	if (this.Permissions == null) {
     		if(test != null) {
     			this.Permissions = (Permissions)test;

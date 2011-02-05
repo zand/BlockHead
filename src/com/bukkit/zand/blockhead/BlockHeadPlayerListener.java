@@ -159,7 +159,7 @@ public class BlockHeadPlayerListener extends PlayerListener {
 		ItemStack helmet = inv.getHelmet();
 		ItemStack hat = new ItemStack(item.getType());
 		hat.setData(item.getData()); // For colored cloth
-		hat.setDamage(item.getDamage());
+		hat.setDurability(item.getDurability());
 		
 		inv.setHelmet(hat);
 		if (item.getAmount() > 1) item.setAmount(item.getAmount()-1);
