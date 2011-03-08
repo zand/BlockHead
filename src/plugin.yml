@@ -1,4 +1,11 @@
 name: BlockHead
 author: zand
 main: com.bukkit.zand.blockhead.BlockHead
-version: 0.2.3
+version: 0.3.0
+commands:
+  hat:
+    description: Puts the block in-hand on your head
+    usage: /hat
+  blockhead:
+    description:
+    usage:
