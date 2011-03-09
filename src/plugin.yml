@@ -1,7 +1,7 @@
 name: BlockHead
 author: zand
-main: com.bukkit.zand.blockhead.BlockHead
-version: 0.3.0
+main: com.zand.bukkit.blockhead.BlockHead
+version: 0.3.1
 commands:
   hat:
     description: Puts the block in-hand on your head

@@ -1,4 +1,4 @@
-package com.bukkit.zand.blockhead;
+package com.zand.bukkit.blockhead;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -256,9 +256,9 @@ public class BlockHead extends JavaPlugin {
 		}
 		
 		ItemStack helmet = inv.getHelmet();
-		ItemStack hat = new ItemStack(item.getType());
-		hat.setData(item.getData()); // For colored cloth
-		hat.setDurability(item.getDurability());
+		ItemStack hat = new ItemStack(item.getType(), 1, 
+				item.getDurability());
+		hat.setData(item.getData());
 		
 		inv.setHelmet(hat);
 		if (item.getAmount() > 1) item.setAmount(item.getAmount()-1);
