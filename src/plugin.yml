@@ -1,11 +1,16 @@
 name: BlockHead
 author: zand
 main: com.zand.bukkit.blockhead.BlockHead
-version: 0.3.1
+version: 0.3.2
 commands:
   hat:
-    description: Puts the block in-hand on your head
-    usage: /hat
-  blockhead:
-    description:
-    usage:
+    description: Puts blocks on players heads
+    usage: |
+           /<command> [[group <group>|<player>] <block>|ver|help]
+           Example: /<command> ver- Prints the version.
+           Example: /<command> help- Prints the help.
+           Example: /<command> - Puts the held block on your head.
+           Example: /<command> 1 - Puts the block with id 1 (stone) on your head.
+           Example: /<command> zand sand - Puts sand on zand's head.
+           Example: /<command> group admin TnT - Puts tnt on all the players in the admin group heads.
+           
