@@ -14,6 +14,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -91,13 +92,20 @@ public class BlockHead extends JavaPlugin {
 
 	@SuppressWarnings("static-access")
 	boolean checkPermission(CommandSender sender, String nodes) {
+		// If its a player
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
+			
+			// If we dont have the permissions plugin
 			if (this.Permissions == null)
 				return nodes == "blockhead.hat" || player.isOp()
 						&& !nodes.startsWith("blockhead.hat.give.");
+			
 			return this.Permissions.Security.permission(player, nodes);
-		} else if (sender instanceof ConsoleCommandSender) {
+		} 
+		
+		// If its the server
+		else if (sender instanceof ConsoleCommandSender) {
 			if (nodes.startsWith("blockhead.hat.give."))
 				return true;
 			else
@@ -280,7 +288,9 @@ public class BlockHead extends JavaPlugin {
 
 		ItemStack helmet = inv.getHelmet();
 		ItemStack hat = new ItemStack(item.getType(), (item.getAmount() < 1 ? item.getAmount() : 1), item.getDurability());
-		hat.setData(item.getData());
+		MaterialData data = item.getData();
+		if (data != null)
+			hat.setData(item.getData());
 
 		inv.setHelmet(hat);
 		if (item.getAmount() > 1)

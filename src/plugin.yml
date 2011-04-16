@@ -1,7 +1,7 @@
 name: BlockHead
 author: zand
 main: com.zand.bukkit.blockhead.BlockHead
-version: 0.3.2
+version: 0.3.4
 commands:
   hat:
     description: Puts blocks on players heads
